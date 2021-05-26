@@ -2,6 +2,11 @@
  
  <p align="center">🚀 To create an API following the clean architecture structure.</p>
 
+ # End Points Details
+ -  Create user
+ -  List all users
+ -  Turn user admin
+ -  Get user by id 
 
  ## Install dependences
  $ yarn 
