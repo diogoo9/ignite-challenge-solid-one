@@ -12,7 +12,6 @@ usersRoutes.post("/", (request, response) =>
   createUserController.handle(request, response)
 );
 
-
 usersRoutes.patch("/:user_id/admin", (request, response) =>
   turnUserAdminController.handle(request, response)
 );

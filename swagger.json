@@ -1,0 +1,332 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Atlas",
+    "description": "Essa e uma documentacao sobre a Atlas API."
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Criar um novo usuario",
+        "description": "Criar um novo usuario!",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "Diogo Santos",
+                  "email": "diogo@teste.com"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "operacao realizada com sucesso!",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": "b5325178-a239-4c6e-b0a2-b471e01a3f17",
+                  "admin": false,
+                  "name": "Diogo Santos",
+                  "email": "diogo@teste.com",
+                  "created_at": "2021-05-26T00:11:24.631Z",
+                  "updated_at": "2021-05-26T00:11:24.631Z"
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Email ja cadastrado",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "User already exists!"
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": " Retorna todos os usuarios.",
+        "description": "Somente `ADMIN` podem acessar!",
+        "parameters": [
+          {
+            "schema": {},
+            "name": "user_id",
+            "in": "header",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "id": "b5325178-a239-4c6e-b0a2-b471e01a3f17",
+                    "admin": false,
+                    "name": "Diogo Santos",
+                    "email": "diogo@teste.com",
+                    "created_at": "2021-05-26T00:11:24.631Z",
+                    "updated_at": "2021-05-26T00:11:24.631Z"
+                  },
+                  {
+                    "id": "b5325178-a239-4c6e-b0a2-b471e0sasasa",
+                    "admin": false,
+                    "name": "Felipe Santos",
+                    "email": "felipe@teste.com",
+                    "created_at": "2021-05-27T00:11:24.631Z",
+                    "updated_at": "2021-05-27T00:11:24.631Z"
+                  }
+                ],
+                "schema": {
+                  "type": "array",
+                  "properties": {
+                    "": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "admin": {
+                          "type": "boolean"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        },
+                        "created_at": {
+                          "type": "string"
+                        },
+                        "updated_at": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "400": {
+                "description": "Error!",
+                "content": {
+                  "application/json": {
+                    "example": {
+                      "error": "you need to be an admin to list all users!"
+                    },
+                    "schema": {
+                      "properties": {
+                        "error": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Retorna um usuario especifico.",
+        "description": "Get user by id",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": "b5325178-a239-4c6e-b0a2-b471e01a3f17",
+                  "admin": false,
+                  "name": "Diogo Santos",
+                  "email": "diogo@teste.com",
+                  "created_at": "2021-05-26T00:11:24.631Z",
+                  "updated_at": "2021-05-26T00:11:24.631Z"
+                },
+                "schema": {
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not exist!",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "User not found!"
+                },
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}/admin": {
+      "patch": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Torna admin um usuario.",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": "b5325178-a239-4c6e-b0a2-b471e01a3f17",
+                  "admin": true,
+                  "name": "Diogo Santos",
+                  "email": "diogo@teste.com",
+                  "created_at": "2021-05-26T00:11:24.631Z",
+                  "updated_at": "2021-05-26T00:11:24.631Z"
+                },
+                "schema": {
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User does not exist!",
+            "content": {
+              "application/json": {
+                "example": {
+                  "error": "User not found!"
+                },
+                "schema": {
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
